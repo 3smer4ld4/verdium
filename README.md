@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Verdium 🌿
 
-## Getting Started
+### Catálogo educativo de plantas y guías de cuidado
 
-First, run the development server:
+Verdium es una aplicación web educativa que permite explorar diferentes especies vegetales que no echaras en una sopa, conocer sus características y aprender sobre sus cuidados. Su objetivo es ofrecer información organizada y accesible para personas interesadas en el mundo de las plantas.
+
+El proyecto utiliza Next.js para el desarrollo de la aplicación y Supabase como servicio de base de datos
+
+## Características principales
+
+- Catálogo dinámico de plantas.
+- Clasificación de plantas por categorías.
+- Información sobre iluminación, riego, humedad y dificultad de cuidado.
+- Manejo de estados de carga, errores y páginas no encontradas.
+- Protección de datos mediante políticas Row Level Security (RLS).
+
+## Tecnologías utilizadas
+
+- **Next.js 16:** Framework para el desarrollo de la aplicación web.
+- **React:** Biblioteca para construir interfaces.
+- **TypeScript:** Lenguaje con tipado estático.
+- **Supabase:** Servicio backend y conexión con la base de datos.
+- **PostgreSQL:** Sistema de gestión de base de datos.
+- **CSS:** Diseño y estilos de la interfaz.
+- **Git y GitHub:** Control de versiones y alojamiento del código fuente.
+
+## Base de datos
+
+La aplicación utiliza Supabase con PostgreSQL y cuenta con dos tablas principales:
+
+### Tabla `plantas`
+
+Contiene la información de las especies vegetales:
+
+- Identificador.
+- Nombre común y científico.
+- Descripción.
+- Cuidados.
+- Necesidades de iluminación.
+- Frecuencia de riego.
+- Humedad.
+- Dificultad de mantenimiento.
+- URL para una imagen ilustratica.
+- Identificador de categoría.
+
+### Tabla `categorias`
+
+Permite organizar las plantas según su clasificación:
+
+- Identificador.
+- Nombre.
+- Slug.
+- Descripción.
+
+La tabla `plantas` mantiene una relación mediante clave foránea con la tabla `categorias`.
+
+Actualmente, la base de datos contiene cinco registros de plantas y cuatro categorías.
+
+## Seguridad
+
+Se implementaron políticas de Row Level Security (RLS) en las tablas `plantas` y `categorias`.
+
+Actualmente, las políticas permiten operaciones de lectura pública para los roles `anon` y `authenticated`.
+
+La conexión utiliza la clave pública Publishable Key de Supabase. Las credenciales secretas no deben incluirse en el repositorio.
+
+## Instalación y ejecución
+
+### Requisitos previos
+
+- Node.js.
+- npm.
+- Una cuenta de Supabase.
+- Git.
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/3smer4ld4/verdium.git
+cd verdium
+```
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar las variables de entorno
+
+Crear un archivo `.env.local` en la raíz del proyecto, tomando como referencia el archivo `.env.example`.
+
+Agregar las credenciales del proyecto de Supabase:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=TU_PROJECT_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=TU_PUBLISHABLE_KEY
+```
+
+Estas variables se obtienen desde la configuración del proyecto en Supabase.
+
+### 4. Ejecutar el servidor de desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir en el navegador:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Compilación para producción
 
-## Learn More
+Para generar una compilación optimizada:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para iniciar la aplicación en modo producción:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run start
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Verdium — Deja de ser la mata plantas 3000**
